@@ -60,7 +60,7 @@ The protocol checks the miner votes against the actual block size during the sam
 
 ===Part 3: Long-Term Constraints on BlockSizeLimit's Evolution===
 
-The miner vote (i.e. the possibly “corrected” vote acc. to “Part 2”) is further constrained to avoid a too fast growth or decline. For this, the past long-term average block size limit (roughly 1-2 year average, determined by simple exponential window averaging with 62.5 weeks “eff. window length”) is taken into account, and the new BlockSizeLimit is forced to respect the min/max growth rates of +41% p.a / ‑8% p.a. (i.e. factor x2 each 2 years, factor x0.5 each 8 years).
+The miner vote (i.e. the possibly “corrected” vote acc. to “Part 2”) is further constrained to avoid a too fast growth or decline. For this, the past long-term average block size limit (roughly 1-2 year average, determined by simple exponential window averaging with 62.5 weeks “eff. window length”) is taken into account, and the new BlockSizeLimit is forced to respect the min/max growth rates of +41% p.a. / ‑8% p.a. (i.e. factor x2 each 2 years, factor x0.5 each 8 years).
 In case of 80% vote majority, more relaxed constraints are applied to the long-term evolution: In this case the limits are +100% p.a / ‑16% p.a. (i.e. factor x2 each 1 years, factor x0.5 each 4 years).
 
 ===Part 4: Absolute Limits on the BlockSizeLimit===
