@@ -128,7 +128,7 @@ The maximum overbooking factor (x4), the limit on blocks allowed to be "overbook
 
 The decision to burn these bitcoins instead of making them available to later miners by a "rollover pool" (as suggested by Meni Rosenfeld) is pure simplicity: It is assumed that this is an exceptional mechanism (and less and less needed the more Bitcoin matures in the future when block rewards half), so there is not much benefit in making the protocol overly complicated here, just to avoid reducing the overall miner rewards by burning some TX fees.
 
-(Another reason is that, when miners are seen as one collective group, then with the "rollover" mechanism all penalties would eventually go back to the miners anyway, so there would not be any counter-incentive when considered the miners ''collectively''. With the "proof of burn" mechanis favored in this BIP, there really is a collective counter-incentive to overbook blocks.)
+(Another reason is that, when miners are seen as one collective group, then with the "rollover" mechanism all penalties would eventually go back to the miners anyway, so there would not be any counter-incentive when considering the miners ''collectively''. With the "proof of burn" mechanism favored by this BIP, there really is a collective counter-incentive against overbook blocks.)
 
 ===Rationale Part 6: Signaling in the Block Header's Version Number Field===
 
@@ -154,7 +154,7 @@ SPV wallets are not affected and require no change or update.
 
 SW compliant with this BIP can be deployed any time. As soon as a 75% supermajority is achieved (same percentage as proposed in BIP101), consensus is reached and the changes of this protocol will activate after a 2-3 week grace period, leaving other miners sufficient time for upgrading to the new protocol version.
 
-If implementation and testing of this BIP10X takes to long while current block size limit is already approached by real block sizes, then time should be gained by temporary rasingin block size limt to 2 MB via BIP102, before finally this BIP10X gets deployed.
+If implementation and testing of this BIP10X takes too long while current block size limit is already approached by real block sizes, then time should be gained by temporary rasingin block size limt to 2 MB via BIP102, before finally this BIP10X gets deployed.
 
 
 ==Acknowledgements==
@@ -163,7 +163,7 @@ If implementation and testing of this BIP10X takes to long while current block s
 
 * Gavin Andresen for proposing a fixed growth rate solution for BlockSizeLimit via BIP101.
 
-* All participants of paragmatic proposals and discussions around BlockSizeLimit.
+* All participants of pragmatic proposals and discussions around BlockSizeLimit.
 
 * All Bitcoin developers for enabling this discussion in the first place.
 
