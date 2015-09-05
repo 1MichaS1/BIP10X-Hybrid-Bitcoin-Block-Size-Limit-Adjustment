@@ -2,9 +2,9 @@
   BIP: 10X
   Title: A Hybrid Mechanism for Adaptively Adjusting Bitcoin's Block Size Limit
   Author: Michael_S (bitcointalk.org)
-  Status: Draft
+  Status: Draft  (2015-09-04, v0.2)
   Type: Standards Track
-  Created: 2015-09-04
+  Created: 2015-09-02 (v0.1)
 </pre>
 
 ==Abstract==
