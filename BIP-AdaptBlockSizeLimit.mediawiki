@@ -153,7 +153,7 @@ The version number field itself has 32 bits, which is much more than what is act
 
 ==Compatibility==
 
-This is a hard-forking change to the Bitcoin protocol. Anybody running code that fully validates blocks must upgrade before the end of the grace period after the activation time of this BIP. Otherwise, it will not be possible any more by the other miner to work on the miner majority's longest chain.
+This is a hard-forking change to the Bitcoin protocol. Anybody running code that fully validates blocks must upgrade before the end of the grace period after the activation time of this BIP. Otherwise, the other miner will no more be able to work on the miner majority's longest chain.
 
 SPV wallets are not affected and require no change or update.
 
