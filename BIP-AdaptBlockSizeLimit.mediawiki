@@ -119,7 +119,7 @@ The signaling format is fully specified in bit-exact manner, it is simple and ye
 
 The reason for putting all information of this BIP (particularly the votes) into the header is given by Gavin Andresen in his BIP101 proposal's comment on BIP100:
 
-''“[...] [Having BIP100's vote in the coinbase scriptSig] is more complex to implement [than BIP101's solution to only have a modification in the header], because [with BIP100] the maximum allowed size for a block depends on information contained in coinbase transactions from previous blocks (which may not be immediately known if block contents are being fetched out-of-order in a 'headers-first' mode)”''
+''“[...] <nowiki>[Having BIP100's vote in the coinbase scriptSig]</nowiki> is more complex to implement [than BIP101's solution to only have a modification in the header], because [with BIP100] the maximum allowed size for a block depends on information contained in coinbase transactions from previous blocks (which may not be immediately known if block contents are being fetched out-of-order in a 'headers-first' mode)”''
 
 With this BIP's approach to include the vote (and other new infos) in the header's version number field, this disadvantage is avoided.
 
