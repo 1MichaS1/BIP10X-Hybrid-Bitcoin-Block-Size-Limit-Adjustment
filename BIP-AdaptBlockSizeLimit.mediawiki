@@ -1,30 +1,31 @@
 <pre>
-  BIP: 10X
-  Title: A Hybrid Mechanism for Adaptively Adjusting Bitcoin's Block Size Limit
-  Author: Michael_S (bitcointalk.org)
-  Status: Draft  (2015-09-04, v0.2)
+  BIP: 10X (not applied for a BIP number yet)
+  Title: Hybrid Mechanism Adjusting Block Size Limit
+  Author: Michael_S user of bitcointalk.org
+  Status: Draft
   Type: Standards Track
-  Created: 2015-09-02 (v0.1)
+  Created: 2015-08-31
 </pre>
 
-;Full Specification:
+;Reference to fullly detailed specification incl. simulation results (~40 pages):
 : [https://de.scribd.com/doc/278523628/A-Hybrid-Mechanism-for-Adaptively-Adjusting-Bitcoin-s-Block-Size-Limit-BIP10X BIP10X_Block_Size_Limit_Adaptation_v02.pdf] - scribd.com
 : [https://www.dropbox.com/s/ffr30msdjdo5qh0/BIP10X_Block_Size_Limit_Adaptation_v02.pdf?dl=0 BIP10X_Block_Size_Limit_Adaptation_v02.pdf] - dropbox download
 
+;Copyright notice:
+: This document is placed in the public domain
+
 ==Abstract==
 
-This BIP proposes replacing the fixed one megabyte block size limit with a dynamically controlled block size limit that may increase or slowly decrease in 1 week intervals, depending on different criteria and constrains. These are:
+This BIP proposes replacing the fixed one megabyte block size limit with a dynamically controlled block size limit that may increase or slowly decrease in ~1 week intervals. The adaptive adjustment of block size limit depends on different criteria (CRT) and constraints (CNS), which are:
 
-* Miner votes in 1-week intervals
-* Actual occupancy of blocks in the same 1-week voting intervals
-* Long-term change of the block size limit
-* Short-term load peaks
+* Continuous miner votes evaluated in 1-week intervals (CRT)
+* Actual occupancy of blocks in the same 1-week voting intervals (CNS)
+* Long-term change of rate the block size limit (CNS)
+* Short-term load peaks (CRT/CNS)
 
-'''''This document only gives a brief overview with no implementation details.'''''
+'''''This document only gives a brief overview with no deep implementation details.'''''
 
-''More details with concrete implementation guidelines, formulas, illustrative figures, simulation code, simulation results, and with more detailed rationale on all design choices, can be found here:''
-
-* ''Announcement on bitcointalk.org (last up-to-date version will be linked from here): https://bitcointalk.org/index.php?topic=1166970.0''
+''More details with concrete implementation guidelines, formulas, illustrative figures, simulation code, simulation results, and with more detailed rationale on all design choices, are contained in a ~40 pages PDF document that is linked from [this BIP's thread on bitcointalk.org https://bitcointalk.org/index.php?topic=1166970.0 bitcointalk.org forum] for now. It might be moved to a separate Github file at a later point in time.
 
 
 ==Motivation==
