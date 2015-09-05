@@ -42,7 +42,7 @@ So, unlike with BIP100, no overarching control is given to miner votes. Instead,
 
 This BIP therefore solves the most criticized points of the two most popular BIP proposals for the block size limit issue, namely BIP100 and BIP101, and shows a path that takes into account concerns against BIP100 and BIP101 widely expressed by the community and seen by the author himself. Thanks to the way how this BIP is carefully constructed, it is not a "rotten compromise" but a fully independent solution that combines the best ideas and properties of BIP100 and BIP101 while eliminating their greatest drawbacks. Thereby it is hoped to achieve the greatest community consensus.
 
-Finally, the motivation of this BIP is also to have means for “elastic” reaction to temporary short-term traffic increase in the Bitcoin network while avoiding mis-use by sufficient counter-incentive. While this "elasticity feature" implementation-wise does not interfere with the other features of this BIP, it was still decided to include it into this BIP to get what the author considers the most complete package to tackle the BlockSizeLimit evolution issue.
+Finally, the motivation of this BIP is also to have means for “elastic” reaction to temporary short-term traffic increase in the Bitcoin network while avoiding mis-use by sufficient counter-incentive. While this "elasticity feature" implementation-wise does not interfere with the other features of this BIP, it was still decided to include it into this BIP to get what the author considers the most complete package to tackle the BlockSizeLimit issue.
 
 
 ==Specification==
