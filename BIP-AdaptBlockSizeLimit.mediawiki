@@ -16,11 +16,11 @@ This BIP proposes replacing the fixed one megabyte block size limit with a dynam
 * Long-term change of the block size limit
 * Short-term load peaks
 
-This document only gives a brief overview with no implementation details.
+'''''This document only gives a brief overview with no implementation details.'''''
 
-More details with concrete implementation guidelines, formulas, illustrative figures, simulation code, simulation results, and with more detailed rationale on all design choices, can be found here:
+''More details with concrete implementation guidelines, formulas, illustrative figures, simulation code, simulation results, and with more detailed rationale on all design choices, can be found here:''
 
-* Announcement on bitcointalk.org (last up-to-date version will be linked from here): https://bitcointalk.org/index.php?topic=1166970.0
+* ''Announcement on bitcointalk.org (last up-to-date version will be linked from here): https://bitcointalk.org/index.php?topic=1166970.0''
 
 
 ==Motivation==
@@ -31,7 +31,7 @@ https://blockchain.info/charts/avg-block-size?timespan=all&showDataPoints=false&
 
 The intention of this BIP is to permanently incorporate miner voting into the protocol instead of doing “de-facto voting” within a protocol that does not actually support voting, by introducing hard-forks into the network and let miner majority decide upon acceptance (=de-facto voting).
 
-Integrating voting into the protocol should appease the minds and make future adaptations of the BlockSizeLimit within the protocol the norm, based on market demands and technological evolution. It should give planning security to all stakeholders, while developers can re-focus on other important improvements. Constraints and growth rate limits shall further improve planning security by avoiding sudden swings of the BlockSizeLimit in the first place.
+Integrating voting into the protocol should appease the minds and make future adaptations of the BlockSizeLimit within the protocol the norm, based on market demands and technological evolution. It should give '''''planning security''''' to all stakeholders, while developers can re-focus on other important improvements. ''Constraints'' and ''growth rate limits'' shall further improve planning security by avoiding sudden swings of the BlockSizeLimit in the first place.
 
 So, unlike with BIP100, no overarching control is given to miner votes. Instead, actual block occupancy is taken into consideration by providing a tolerance interval that saturates votes which would otherwise be too far off. Another fixed tolerance span is defined for the long-term growth rate of the BlockSizeLimit to avoid too arbitrary variations. However, unlike BIP101, the protocol does allow adaptation to long-term evolution of markets and technologies, which cannot be predicted from today into all future. This BIP therefore solves the most criticized points of the two most popular proposals, BIP100 and BIP101, and shows a path that takes into account concerns widely expressed by the community and felt by the author himself against BIP100 and BIP101. Thanks to the way how this BIP is carefully constructed, it is not a rotten compromise but a fully independent solution that combines the good ideas of BIP100 and BIP101 while eliminating their main drawbacks.
 
@@ -99,7 +99,7 @@ Note that in a sense these are also miner votes, because it is up to the miners 
 
 The max growth rate limit of 41% p.a. is taken from the optimistic growth rate assumption of BIP101. The 100% p.a. “boosted” limit (for 80% miner majority) is taken as a precaution, should even that not be enough. The ‑8% decline rate limit is chosen because it opens up the general possibility to decrease BlockSizeLimit for whatever reason. However, times of low traffic should not pre-maturely cause a too quick decline that makes it difficult to later come back to the original value, hence the decline rate is limited much stricter than the growth rate (factor 2 is only achieved in 8 instead of 2 years). The ‑16% decline rate for 80% miner majority realizes the same factor 2 speed-up (relative to 50% majority) as for the growth rate case.
 
-This is the strongest constraint, it potentially overrules the previous miners' decisions, thereby avoiding miner abuse and allowing long-term planning security – no sudden surprises are possible, because BlockSizeLimit can only evolve at limited pace and in small steps. This is of advantage for miners and other stake holders and thereby beneficial for the Bitcoin eco-system as a whole.
+This is the strongest constraint, it potentially overrules the previous miners' decisions, thereby avoiding miner abuse and allowing long-term '''''planning security''''' – no sudden surprises are possible, because BlockSizeLimit can only evolve at limited pace and in small steps. This is of advantage for miners and other stake holders and thereby beneficial for the Bitcoin eco-system as a whole.
 
 ===Rationale Part 4: Absolute Limits on the BlockSizeLimit===
 
@@ -119,7 +119,7 @@ The signaling format is fully specified in bit-exact manner, it is simple and ye
 
 The reason for putting all information of this BIP (particularly the votes) into the header is given by Gavin Andresen in his BIP101 proposal's comment on BIP100:
 
-“[...] [Having BIP100's vote in the coinbase scriptSig] is more complex to implement [than BIP101's solution to only have a modification in the header], because [with BIP100] the maximum allowed size for a block depends on information contained in coinbase transactions from previous blocks (which may not be immediately known if block contents are being fetched out-of-order in a 'headers-first' mode)”
+''“[...] [Having BIP100's vote in the coinbase scriptSig] is more complex to implement [than BIP101's solution to only have a modification in the header], because [with BIP100] the maximum allowed size for a block depends on information contained in coinbase transactions from previous blocks (which may not be immediately known if block contents are being fetched out-of-order in a 'headers-first' mode)”''
 
 With this BIP's approach to include the vote (and other new infos) in the header's version number field, this disadvantage is avoided.
 
