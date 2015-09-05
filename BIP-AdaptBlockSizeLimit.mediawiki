@@ -27,7 +27,7 @@ This BIP proposes replacing the fixed one megabyte block size limit with a dynam
 
 With increased adoption, transaction volume on Bitcoin network is bound to grow. If the one megabyte BlockSizeLimit is not changed to a flexible one which adapts to changing network demand and technological progress, Bitcoin adoption will slow down and the Bitcoin experiment may eventually fail. Following graph shows the change in average block size since inception:
 
-https://blockchain.info/charts/avg-block-size?timespan=all&showDataPoints=false&daysAverageString=1&show_header=true&scale=0&address=
+: https://blockchain.info/charts/avg-block-size?timespan=all&showDataPoints=false&daysAverageString=1&show_header=true&scale=0&address=
 
 The intention of this BIP is to permanently incorporate miner voting into the protocol instead of doing “de-facto voting” within a protocol that does not actually support voting, by introducing hard-forks into the network and let miner majority decide upon acceptance (=de-facto voting).
 
