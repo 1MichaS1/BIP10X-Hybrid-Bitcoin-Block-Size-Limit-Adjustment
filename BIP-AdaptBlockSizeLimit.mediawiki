@@ -8,8 +8,8 @@
 </pre>
 
 ;Full spec
-: [https://de.scribd.com/doc/278523628/A-Hybrid-Mechanism-for-Adaptively-Adjusting-Bitcoin-s-Block-Size-Limit-BIP10X scribd.com]
-: [https://www.dropbox.com/s/ffr30msdjdo5qh0/BIP10X_Block_Size_Limit_Adaptation_v02.pdf?dl=0 dropbox download]
+: [https://de.scribd.com/doc/278523628/A-Hybrid-Mechanism-for-Adaptively-Adjusting-Bitcoin-s-Block-Size-Limit-BIP10X BIP10X_Block_Size_Limit_Adaptation_v02.pdf] - scribd.com
+: [https://www.dropbox.com/s/ffr30msdjdo5qh0/BIP10X_Block_Size_Limit_Adaptation_v02.pdf?dl=0 BIP10X_Block_Size_Limit_Adaptation_v02.pdf] - dropbox download
 
 ==Abstract==
 
