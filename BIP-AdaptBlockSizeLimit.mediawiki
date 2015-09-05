@@ -155,4 +155,4 @@ Further References:
 
 [https://tradeblock.com/blog/bitcoin-network-capacity-analysis-part-4-simulating-practical-capacity Bitcoin Network Capacity Analysis] - Part 4: Simulating Practical Capacity
 
-[https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2015-July/009808.html A summary of block size hard fork proposals]
+[https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2015-July/009808.html A summary of block size hard fork proposals] - (lists.linuxfoundation.org)
