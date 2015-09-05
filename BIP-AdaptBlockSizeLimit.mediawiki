@@ -34,7 +34,7 @@ With increased adoption, transaction volume on Bitcoin network is bound to grow.
 
 : https://blockchain.info/charts/avg-block-size?timespan=all&showDataPoints=false&daysAverageString=1&show_header=true&scale=0&address=
 
-The intention of this BIP is to permanently incorporate miner voting into the protocol instead of doing “de-facto voting” within a protocol that does not actually support voting, by introducing hard-forks into the network and let miner majority decide upon acceptance/activation (="de-facto voting").
+This BIP permanently incorporates miner voting about the block size limit into the protocol. Such a solution is considered preferrable over a solution where “de-facto voting” is done (within a protocol that does not actually support voting) by introducing hard-forks into the network and let miner majority decide upon acceptance/activation (="de-facto voting").
 
 Integrating voting into the protocol should appease the minds and make future adaptations of the BlockSizeLimit a normal process within the protocol, based on market demands and technological evolution. It should give '''''planning security''''' to all stakeholders, while developers can re-focus on other important improvements. '''''Constraints''''' and '''''growth rate limits''''' further improve planning security by avoiding sudden swings of the BlockSizeLimit by definition of the protocol.
 
