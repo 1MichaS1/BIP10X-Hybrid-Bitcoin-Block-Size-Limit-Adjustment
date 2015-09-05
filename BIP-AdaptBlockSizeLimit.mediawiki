@@ -90,6 +90,8 @@ Votes and some other information needed for this BIP are included in unused part
 
 ==Rationale==
 
+The rationale for using miner voting in the first place is to "institutionalize" a voting mechanism inside the protocol to avoid that "de-factor" voting is made via hard-forks in the future for BlockSizeLimit adaptations in the presence of SW not allowing voting. While BIP100 already proposes miner voting, it has some drawbacks in the way how it is realized, and these drawbacks are aimed to be removed by the other features of this "BIP10X".
+
 ===Rationale Part 0: Miner Voting for Initial BlockSizeLimit to Start With===
 
 Instead of fixing the start BlockSizeLimit upfront, it is more consistent with the overall idea to leave this decisions to the miners. Limits of 1 to 4 MB are set to avoid mis-use. The 80% requirement is chosen to respect the needs of more conservative miners for this initial irrevocable decision, to avoid too much disruption when this BIP is introduced.
@@ -147,9 +149,23 @@ This is a hard-forking change to the Bitcoin protocol. Anybody running code that
 
 SPV wallets are not affected and require no change or update.
 
+
 ==Deployment==
 
 SW compliant with this BIP can be deployed any time. As soon as a 75% supermajority is achieved (same percentage as proposed in BIP101), consensus is reached and the changes of this protocol will activate after a 2-3 week grace period, leaving other miners sufficient time for upgrading to the new protocol version.
+
+If implementation and testing of this BIP10X takes to long while current block size limit is already approached by real block sizes, then time should be gained by temporary rasingin block size limt to 2 MB via BIP102, before finally this BIP10X gets deployed.
+
+
+==Acknowledgements==
+
+* Jeff Garzik for proposing a miner voting mechanism for BlockSizeLimit via BIP100.
+
+* Gavin Andresen for proposing a fixed growth rate solution for BlockSizeLimit via BIP101.
+
+* All participants of paragmatic proposals and discussions around BlockSizeLimit.
+
+* All Bitcoin developers for enabling this discussion in the first place.
 
 
 ==Other Solutions Considered==
