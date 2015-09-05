@@ -1,0 +1,158 @@
+<pre>
+  BIP: 10X
+  Title: A Hybrid Mechanism for Adaptively Adjusting Bitcoin's Block Size Limit
+  Author: Michael_S (bitcointalk.org)
+  Status: Draft
+  Type: Standards Track
+  Created: 2015-09-04
+</pre>
+
+==Abstract==
+
+This BIP proposes replacing the fixed one megabyte block size limit with a dynamically controlled block size limit that may increase or slowly decrease in 1 week intervals, depending on different criteria and constrains. These are:
+
+* Miner votes in 1-week intervals
+* Actual occupancy of blocks in the same 1-week voting intervals
+* Long-term change of the block size limit
+* Short-term load peaks
+
+This document only gives a brief overview with no implementation details.
+
+More details with concrete implementation guidelines, formulas, illustrative figures, simulation code, simulation results, and with more detailed rationale on all design choices, can be found here:
+
+* Announcement on bitcointalk.org (last up-to-date version will be linked from here): https://bitcointalk.org/index.php?topic=1166970.0
+
+
+==Motivation==
+
+With increased adoption, transaction volume on Bitcoin network is bound to grow. If the one megabyte BlockSizeLimit is not changed to a flexible one which adapts to changing network demand and technological progress, Bitcoin adoption will slow down and the Bitcoin experiment may eventually fail. Following graph shows the change in average block size since inception:
+
+https://blockchain.info/charts/avg-block-size?timespan=all&showDataPoints=false&daysAverageString=1&show_header=true&scale=0&address=
+
+The intention of this BIP is to permanently incorporate miner voting into the protocol instead of doing “de-facto voting” within a protocol that does not actually support voting, by introducing hard-forks into the network and let miner majority decide upon acceptance (=de-facto voting).
+
+Integrating voting into the protocol should appease the minds and make future adaptations of the BlockSizeLimit within the protocol the norm, based on market demands and technological evolution. It should give planning security to all stakeholders, while developers can re-focus on other important improvements. Constraints and growth rate limits shall further improve planning security by avoiding sudden swings of the BlockSizeLimit in the first place.
+
+So, unlike with BIP100, no overarching control is given to miner votes. Instead, actual block occupancy is taken into consideration by providing a tolerance interval that saturates votes which would otherwise be too far off. Another fixed tolerance span is defined for the long-term growth rate of the BlockSizeLimit to avoid too arbitrary variations. However, unlike BIP101, the protocol does allow adaptation to long-term evolution of markets and technologies, which cannot be predicted from today into all future. This BIP therefore solves the most criticized points of the two most popular proposals, BIP100 and BIP101, and shows a path that takes into account concerns widely expressed by the community and felt by the author himself against BIP100 and BIP101. Thanks to the way how this BIP is carefully constructed, it is not a rotten compromise but a fully independent solution that combines the good ideas of BIP100 and BIP101 while eliminating their main drawbacks.
+
+Finally, the motivation of this BIP is also to have means for “elastic” reaction to temporary short-term demands for traffic increase in the Bitcoin network while avoiding mis-use by sufficient counter-incentive.
+
+
+==Specification==
+
+This BIP proposes a combination of several carefully designed features:
+
+===Part 0: Miner Voting for Initial BlockSizeLimit to Start with===
+
+Miner votes determine the initial block size limit with 80% majority at the start of protocol activation. This initial vote is constrained to 1..4 Mbytes. Note: Regular vote one week later can already increase this initial value further by 41% (50% majority), or even double it within 2 weeks (80% majority), see “Part 3” below.
+
+===Part 1: Miner Voting Regularly Every Week===
+
+Miners vote every 1008 blocks (=one week =half of a difficulty adjustment interval). For simplicity, miners can be configured by the operators to vote for a fixed amount, for a fixed factor relative to average actual block size, or to vote for “no change” relative to the week before. 
+
+The effective vote is the median (50% quantile) of all 1008 miner votes.
+
+Special: An 80% majority (20% or 80% quantile respectively) has the power to “boost” the long-term growth (or decline) rate by a speed-up factor of 2 (see “Part 3” below).
+
+===Part 2: Average Actual Block Size During the Voting Period===
+
+The protocol checks the miner votes against the actual block size during the same voting interval. If the discrepancy is too large, the protocol overrules the votes by “forcing” them into a carefully designed tolerance-interval (defined by two constant factors) around the average actual block size.
+
+===Part 3: Long-Term Constraints on BlockSizeLimit's Evolution===
+
+The miner vote (i.e. the possibly “corrected” vote acc. to “Part 2”) is further constrained to avoid a too fast growth or decline. For this, the past long-term average block size limit (roughly 1-2 year average, determined by simple exponential window averaging with 62.5 weeks “eff. window length”) is taken into account, and the new BlockSizeLimit is forced to respect the min/max growth rates of +41% p.a / ‑8% p.a. (i.e. factor x2 each 2 years, factor x0.5 each 8 years).
+In case of 80% vote majority, more relaxed constraints are applied to the long-term evolution: In this case the limits are +100% p.a / ‑16% p.a. (i.e. factor x2 each 1 years, factor x0.5 each 4 years).
+
+===Part 4: Absolute Limits on the BlockSizeLimit===
+
+The TOTAL limits on BlockSizeLimit are set to be between 1 MB and 60.1 GB. The value of 60.1 GB is the result of the concrete implementation proposal of the voting format and is not expected to be met any time soon.  Note that one bit is reserved in the voting format. When releasing this spare bit, max. BlockSizeLimit will very simply rise to 3939 TB (=more than 1TPS per each(!) person on earth, assuming >10 Billion people).
+
+===Part 5: Elasticity by Overbooking===
+
+In exceptional cases of temporary high traffic load, blocks are allowed to exceed the nominal BlockSizeLimit by up to a factor of 4. The occurrence of such “overbooked” blocks is limited to 30% and even stricter to only 10% for blocks more than 2 times above BlockSizeLimit (exponentially averaged over roughly 3-5 months).
+
+Counter-incentive: Miners have to burn (spend to unspendable address) 25% of TX fees attributed to transactions in excess of the BlockSizeLimit (detailed formula available in the full spec).
+
+===Part 6: Signaling in the Block Header's Version Number Field===
+
+Votes and some other information needed for this BIP are included in unused parts of the block header's 32-bit version number field. All details available in the full spec.
+
+==Rationale==
+
+===Rationale Part 0: Miner Voting for Initial BlockSizeLimit to Start with===
+
+Instead of fixing the start BlockSizeLimit upfront, it is more consistent with the overall idea to leave this decisions to the miners. Limits of 1 to 4 MB are set to avoid mis-use. The 80% requirement is chosen to respect the needs of more conservative miners for this initial irrevocable decision.
+
+===Rationale Part 1: Miner Voting Regularly Every Week===
+
+Traffic usage is expected to vary with patterns of weekly periodicity (working days, weekends). Hence a 1 week (1008 blocks) voting interval is chosen. Probably for the same reason, Satoshi has chosen 2 weeks (2016 blocks) as the difficulty adjustment interval.
+
+“Quantile” vote evaluation instead of “averaging” of votes is chosen to avoid the possibility (or need) for “tactical voting”, which would reduce fairness and bring undesired elements of gamble into the voting process. Threshold=50% is chosen because this is the BlockSizeLimit that is not too large for 50% of voters and not too small for 50% of voters, hence most fair. 80% majority for stretching the limits of long-term growth (or decline) beyond the normal limits is chosen to keep a door open for faster evolution, if needed, while making abuse difficult.
+
+===Rationale Part 2: Average Actual Block Size During the Voting Period===
+
+This constraint is proposed because miner votes should not stand against reality. This is a reality-check, so if miners produce almost empty blocks and at the same time vote for an increase, or if miners produce almost full blocks but vote for a decrease, this is considered inconsistent by the protocol. In this case, the actual block size takes precedence over the miners vote.
+
+Note that in a sense these are also miner votes, because it is up to the miners to decide how much a block gets filled.
+
+===Rationale Part 3: Long-Term Constraints on BlockSizeLimit's Evolution===
+
+The max growth rate limit of 41% p.a. is taken from the optimistic growth rate assumption of BIP101. The 100% p.a. “boosted” limit (for 80% miner majority) is taken as a precaution, should even that not be enough. The ‑8% decline rate limit is chosen because it opens up the general possibility to decrease BlockSizeLimit for whatever reason. However, times of low traffic should not pre-maturely cause a too quick decline that makes it difficult to later come back to the original value, hence the decline rate is limited much stricter than the growth rate (factor 2 is only achieved in 8 instead of 2 years). The ‑16% decline rate for 80% miner majority realizes the same factor 2 speed-up (relative to 50% majority) as for the growth rate case.
+
+This is the strongest constraint, it potentially overrules the previous miners' decisions, thereby avoiding miner abuse and allowing long-term planning security – no sudden surprises are possible, because BlockSizeLimit can only evolve at limited pace and in small steps. This is of advantage for miners and other stake holders and thereby beneficial for the Bitcoin eco-system as a whole.
+
+===Rationale Part 4: Absolute Limits on the BlockSizeLimit===
+
+These limits are the result of the bit-accurate protocol specification, and as such they provide a huge signaling range that should be future proof till eternity, while still requiring only few bits and providing a sufficiently fine granularity for the votes.
+
+===Rationale Part 5: Elasticity by Overbooking===
+
+This mechanism introduces a certain degree of elasticity to avoid being “helpless” in case a huge amount of transaction volume is unexpectedly hitting the Bitcoin network.
+
+The max overbooking factor (x4), the limit on blocks allowed to be “overbooked” (10%, 30%)  and the counter-incentive (proof of burn of 25% of “excess” TX fees) are introduced to avoid abuse and to really make sure that the nominal BlockSizeLimit is obeyed under all normal circumstances.
+
+The decision to burn these bitcoins instead of making them available to later miners by a “rollover pool” (as suggested by Meni Rosenfeld) is pure simplicity: It is assumed that this is an exceptional mechanism (and less and less needed the more Bitcoin matures in the future when block rewards half), so there is not much benefit in making the protocol change overly complicated here, just to avoid reducing the overall miner rewards by burning some TX fees.
+
+===Rationale Part 6: Signaling in the Block Header's Version Number Field===
+
+The signaling format is fully specified in bit-exact manner, it is simple and yet very efficient in usage of bit space in the block header.
+
+The reason for putting all information of this BIP (particularly the votes) into the header is given by Gavin Andresen in his BIP101 proposal's comment on BIP100:
+
+“[...] [Having BIP100's vote in the coinbase scriptSig] is more complex to implement [than BIP101's solution to only have a modification in the header], because [with BIP100] the maximum allowed size for a block depends on information contained in coinbase transactions from previous blocks (which may not be immediately known if block contents are being fetched out-of-order in a 'headers-first' mode)”
+
+With this BIP's approach to include the vote (and other new infos) in the header's version number field, this disadvantage is avoided.
+
+The version number field itself has 32 bits, which is much more than what is actually needed. Hence, 2 unused bytes of this field can be used for this BIP's purposes without any negative side effects.
+
+
+==Compatibility==
+
+This is a hard-forking change to the Bitcoin protocol. Anybody running code that fully validates blocks must upgrade before the activation time to be able to work on the miner majority's longest chain.
+
+SPV wallets are not affected and require no change or update.
+
+==Deployment==
+
+SW compliant with this BIP can be deployed any time. As soon as a 75% supermajority is achieved (same percentage as proposed in BIP101), consensus is reached and the changes of this protocol will activate after a 2-3 week grace period, leaving other miners sufficient time for upgrading to the new protocol version.
+
+
+==Other Solutions Considered==
+
+[http://gtf.org/garzik/bitcoin/BIP100-blocksizechangeproposal.pdf Making Decentralized Economic Policy] - BIP100 (v0.8.1) by Jeff Garzik
+
+[https://github.com/bitcoin/bips/blob/master/bip-0101.mediawiki Increase maximum block size] - BIP101 by Gavin Andresen
+
+[https://github.com/bitcoin/bips/pull/173/files Increase block size limit to 2MB] - BIP102 by Jeff Garzik
+
+[https://gist.github.com/sipa/c65665fc360ca7a176a6 Block size following technological growth] - BIP103(?) by Pieter Wuille
+
+[https://github.com/UpalChakraborty/bips/blob/master/BIP-DynamicMaxBlockSize.mediawiki Dynamically Controlled Bitcoin Block Size Max Cap] - BIP1xx by Upal Chakraborty
+
+[https://bitcointalk.org/index.php?topic=1078521.0 Elastic block cap with rollover penalties] - by Meni Rosenfeld
+
+Further References:
+
+[https://tradeblock.com/blog/bitcoin-network-capacity-analysis-part-4-simulating-practical-capacity Bitcoin Network Capacity Analysis] - Part 4: Simulating Practical Capacity
+
+[https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2015-July/009808.html A summary of block size hard fork proposals]
