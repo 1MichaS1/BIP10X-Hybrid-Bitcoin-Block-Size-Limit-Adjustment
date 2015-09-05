@@ -85,32 +85,34 @@ Counter-incentive: Miners have to burn (spend to unspendable address) 25% of TX 
 
 ===Part 6: Signaling in the Block Header's Version Number Field===
 
-Votes and some other information needed for this BIP are included in unused parts of the block header's 32-bit version number field. All details liek definition of bit fields are available in the full spec.
+Votes and some other information needed for this BIP are included in unused parts of the block header's 32-bit version number field. All details like definition of bit fields are available in the full spec.
 
 
 ==Rationale==
 
-===Rationale Part 0: Miner Voting for Initial BlockSizeLimit to Start with===
+===Rationale Part 0: Miner Voting for Initial BlockSizeLimit to Start With===
 
-Instead of fixing the start BlockSizeLimit upfront, it is more consistent with the overall idea to leave this decisions to the miners. Limits of 1 to 4 MB are set to avoid mis-use. The 80% requirement is chosen to respect the needs of more conservative miners for this initial irrevocable decision.
+Instead of fixing the start BlockSizeLimit upfront, it is more consistent with the overall idea to leave this decisions to the miners. Limits of 1 to 4 MB are set to avoid mis-use. The 80% requirement is chosen to respect the needs of more conservative miners for this initial irrevocable decision, to avoid too much disruption when this BIP is introduced.
 
-===Rationale Part 1: Miner Voting Regularly Every Week===
+===Rationale Part 1: Miner Vote Evaluation Regularly Every Week===
 
 Traffic usage is expected to vary with patterns of weekly periodicity (working days, weekends). Hence a 1 week (1008 blocks) voting interval is chosen. Probably for the same reason, Satoshi has chosen 2 weeks (2016 blocks) as the difficulty adjustment interval.
 
-“Quantile” vote evaluation instead of “averaging” of votes is chosen to avoid the possibility (or need) for “tactical voting”, which would reduce fairness and bring undesired elements of gamble into the voting process. Threshold=50% is chosen because this is the BlockSizeLimit that is not too large for 50% of voters and not too small for 50% of voters, hence most fair. 80% majority for stretching the limits of long-term growth (or decline) beyond the normal limits is chosen to keep a door open for faster evolution, if needed, while making abuse difficult.
+"Quantile" vote evaluation instead of "averaging" of votes is chosen to avoid the possibility (or need) for "tactical voting", which would reduce fairness and bring undesired elements of gamble into the voting process. Threshold=50% is chosen because this is the BlockSizeLimit that is not too large for 50% of votes and not too small for 50% of votes, hence most fair. 80% majority for stretching the limits of long-term growth (or decline) beyond the normal limits is chosen to keep a door open for faster evolution, if needed, while making abuse difficult.
 
 ===Rationale Part 2: Average Actual Block Size During the Voting Period===
 
-This constraint is proposed because miner votes should not stand against reality. This is a reality-check, so if miners produce almost empty blocks and at the same time vote for an increase, or if miners produce almost full blocks but vote for a decrease, this is considered inconsistent by the protocol. In this case, the actual block size takes precedence over the miners vote.
+This constraint is introduced because miner votes should not stand against reality. This is a reality-check, so if miners produce almost empty blocks and at the same time vote for an increase, or if miners produce almost full blocks but vote for a decrease, this is considered inconsistent by the protocol. In this case, the actual block size takes precedence over the miner votes and forces the effectve vote into a reasonable range.
 
-Note that in a sense these are also miner votes, because it is up to the miners to decide how much a block gets filled.
+This "reasonable range" is defiend to be between 1.21 and 4.59 times the average actual block size and thereby becomes relevant only if the actual block size lies outside of an interval that is 20%..90% of current BlockSizeLimit.
 
-===Rationale Part 3: Long-Term Constraints on BlockSizeLimit's Evolution===
+''Note that in a sense the average actual block size also reflects "miner votes", because it is up to the miners to decide how much a block gets filled.''
 
-The max growth rate limit of 41% p.a. is taken from the optimistic growth rate assumption of BIP101. The 100% p.a. “boosted” limit (for 80% miner majority) is taken as a precaution, should even that not be enough. The ‑8% decline rate limit is chosen because it opens up the general possibility to decrease BlockSizeLimit for whatever reason. However, times of low traffic should not pre-maturely cause a too quick decline that makes it difficult to later come back to the original value, hence the decline rate is limited much stricter than the growth rate (factor 2 is only achieved in 8 instead of 2 years). The ‑16% decline rate for 80% miner majority realizes the same factor 2 speed-up (relative to 50% majority) as for the growth rate case.
+===Rationale Part 3: Long-Term Constraints on BlockSizeLimit Evolution===
 
-This is the strongest constraint, it potentially overrules the previous miners' decisions, thereby avoiding miner abuse and allowing long-term '''''planning security''''' – no sudden surprises are possible, because BlockSizeLimit can only evolve at limited pace and in small steps. This is of advantage for miners and other stake holders and thereby beneficial for the Bitcoin eco-system as a whole.
+The max growth rate limit of 41% p.a. is taken from the optimistic growth rate assumption of BIP101. The "boosted" limit of 100% p.a. (for 80% miner majority) is taken as a precaution, should not even the 41% be enough. The ‑8% decline rate limit is chosen because it opens up the general possibility to decrease BlockSizeLimit for whatever reason. However, times of low traffic should not pre-maturely cause a too quick decline that makes it difficult to later come back to the original value, hence the decline rate is limited much stricter than the growth rate (factor 2 is only achieved in 8 instead of 2 years). The ‑16% decline rate achievable for 80% miner majority realizes the same factor 2 speed-up (relative to 50% majority) as for the growth rate case.
+
+This long-term growth/decline constraint is the strongest constraint, it potentially overrules the previous miners' decisions, thereby avoiding miner abuse and allowing long-term '''''planning security''''' – no sudden surprises are possible, because BlockSizeLimit can only evolve at limited pace and in small steps. This is of advantage for miners and other stake holders and thereby beneficial for the Bitcoin eco-system as a whole.
 
 ===Rationale Part 4: Absolute Limits on the BlockSizeLimit===
 
@@ -118,11 +120,13 @@ These limits are the result of the bit-accurate protocol specification, and as s
 
 ===Rationale Part 5: Elasticity by Overbooking===
 
-This mechanism introduces a certain degree of elasticity to avoid being “helpless” in case a huge amount of transaction volume is unexpectedly hitting the Bitcoin network.
+This mechanism introduces a certain degree of elasticity to avoid being "helpless" in case a huge amount of transaction volume is unexpectedly hitting the Bitcoin network.
 
-The max overbooking factor (x4), the limit on blocks allowed to be “overbooked” (10%, 30%)  and the counter-incentive (proof of burn of 25% of “excess” TX fees) are introduced to avoid abuse and to really make sure that the nominal BlockSizeLimit is obeyed under all normal circumstances.
+The maximum overbooking factor (x4), the limit on blocks allowed to be "overbooked" (10%, 30%)  and the counter-incentive (proof of burn of 25% of "excess" TX fees) are introduced to avoid abuse and to really make sure that the nominal BlockSizeLimit is obeyed under all normal circumstances.
 
-The decision to burn these bitcoins instead of making them available to later miners by a “rollover pool” (as suggested by Meni Rosenfeld) is pure simplicity: It is assumed that this is an exceptional mechanism (and less and less needed the more Bitcoin matures in the future when block rewards half), so there is not much benefit in making the protocol change overly complicated here, just to avoid reducing the overall miner rewards by burning some TX fees.
+The decision to burn these bitcoins instead of making them available to later miners by a "rollover pool" (as suggested by Meni Rosenfeld) is pure simplicity: It is assumed that this is an exceptional mechanism (and less and less needed the more Bitcoin matures in the future when block rewards half), so there is not much benefit in making the protocol overly complicated here, just to avoid reducing the overall miner rewards by burning some TX fees.
+
+(Another reason is that, when miners are seen as one collective group, then with the "rollover" mechanism all penalties would eventually go back to the miners anyway, so there would not be any counter-incentive when considered the miners ''collectively''. With the "proof of burn" mechanis favored in this BIP, there really is a collective counter-incentive to overbook blocks.)
 
 ===Rationale Part 6: Signaling in the Block Header's Version Number Field===
 
@@ -134,12 +138,12 @@ The reason for putting all information of this BIP (particularly the votes) into
 
 With this BIP's approach to include the vote (and other new infos) in the header's version number field, this disadvantage is avoided.
 
-The version number field itself has 32 bits, which is much more than what is actually needed. Hence, 2 unused bytes of this field can be used for this BIP's purposes without any negative side effects.
+The version number field itself has 32 bits, which is much more than what is actually needed. Hence, 2 unused bytes of this field can be used for this BIP's purposes without any negative side effects.
 
 
 ==Compatibility==
 
-This is a hard-forking change to the Bitcoin protocol. Anybody running code that fully validates blocks must upgrade before the activation time to be able to work on the miner majority's longest chain.
+This is a hard-forking change to the Bitcoin protocol. Anybody running code that fully validates blocks must upgrade before the end of the grace period after the activation time to be able to work on the miner majority's longest chain.
 
 SPV wallets are not affected and require no change or update.
 
