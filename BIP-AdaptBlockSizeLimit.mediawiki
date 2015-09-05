@@ -151,7 +151,7 @@ SW compliant with this BIP can be deployed any time. As soon as a 75% supermajor
 
 [https://bitcointalk.org/index.php?topic=1078521.0 Elastic block cap with rollover penalties] - by Meni Rosenfeld
 
-Further References:
+;Further References:
 
 : [https://tradeblock.com/blog/bitcoin-network-capacity-analysis-part-4-simulating-practical-capacity Bitcoin Network Capacity Analysis] - Part 4: Simulating Practical Capacity
 
