@@ -64,7 +64,8 @@ Special: An 80% majority (20% or 80% quantile respectively) has the power to “
 ===Part 2: Average Actual Block Size During the Voting Period===
 
 The protocol checks the miner votes against the average actual block size (aABS) during the same voting interval. If the discrepancy is too great, the protocol overrules the effective vote by “forcing” it into a carefully designed tolerance-interval around the average actual block size:
-Interval = [1.21 ; 4.59]*aABS.
+
+Interval = <nowiki>[1.21 ; 4.59]</nowiki>*aABS.
 
 ===Part 3: Constraints on Long-Term BlockSizeLimit Evolution===
 
