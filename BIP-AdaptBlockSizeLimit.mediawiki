@@ -180,7 +180,7 @@ If implementation and testing of this BIP10X takes too long while actual block s
 
 ==Other Solutions Considered==
 
-[http://gtf.org/garzik/bitcoin/BIP100-blocksizechangeproposal.pdf Making Decentralized Economic Policy] - BIP100 (v0.8.1) by Jeff Garzik
+[http://gtf.org/garzik/bitcoin/BIP100-blocksizechangeproposal.pdf Making Decentralized Economic Policy v0.8.1] ([https://github.com/jgarzik/bip100/blob/master/bip-0100.mediawiki Latest version on Github]) - BIP100 by Jeff Garzik
 
 [https://github.com/bitcoin/bips/blob/master/bip-0101.mediawiki Increase maximum block size] - BIP101 by Gavin Andresen
 
