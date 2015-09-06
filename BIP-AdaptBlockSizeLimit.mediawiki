@@ -108,7 +108,7 @@ Traffic usage is expected to vary with patterns of weekly periodicity (working d
 
 "Quantile" vote evaluation instead of "averaging" of votes is chosen to avoid the possibility (or need) for "tactical voting", which would reduce fairness and bring undesired elements of gamble into the voting process (like voting more extreme than desired by oneself to offset other extreme votes on the "other side").
 
-The Threshold=50% is chosen because this is the BlockSizeLimit that is not too large for 50% of votes and not too small for 50% of votes, hence most fair. 80% majority for stretching the limits of long-term growth (or decline) beyond the normal limits is chosen to keep a door open for faster evolution, if needed, while making abuse difficult.
+The threshold=50% is chosen because this is the BlockSizeLimit that is not too large for 50% of votes and not too small for 50% of votes, hence most fair. 80% majority for stretching the limits of long-term growth (or decline) beyond the normal limits is chosen to keep a door open for faster evolution, if needed, while making abuse difficult.
 
 ===Rationale Part 2: Average Actual Block Size During the Voting Period===
 
