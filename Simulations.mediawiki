@@ -22,11 +22,12 @@ Note: The algorithm assumes that before start of BIP10X, the BSL was constant an
 
 '''(SIM-01)''' In the '''maximum growth case''', it is assumed that all votes are sufficiently high or the blocks themselves are sufficiently occupied (actually, only the latter is sufficient), such that the actual limit for BSL growth is determined by constraint (C‑2). Simulation started with initial condition BSL_curr='''1 MB''' and then maximized growth rate. It can be seen that a fairly constant growth rate of +41% per year (+100% per 2 years) is achieved from the beginning.
 
-((IMAGE))
+![Sim01](https://cloud.githubusercontent.com/assets/14133304/9701890/5f3cccfa-5443-11e5-806a-e3c2d8cf82a3.png)
 
 ((IMAGE))
 
 Zoomed-in for the first 4 years, illustrating doubling every 2 years:
+
 ((IMAGE))
 
 
