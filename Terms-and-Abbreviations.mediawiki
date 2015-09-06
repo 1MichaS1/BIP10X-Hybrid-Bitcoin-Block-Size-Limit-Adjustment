@@ -32,9 +32,12 @@
 : Starts with BIP10X supermajority achievement (block N) until one block before starting mining using BIP10X rules (i.e. until block M-1).
 ;M
 : Block height of first block being mined acc. to BIP10X rules, M = N + delta, with delta from {2016..3023}. M is 504 blocks away from the nearest difficulty adjustment.
-MSB	Most significant bit
+;MSB
+: Most significant bit
 ;N
-: Block height of the block that achieves BIP10X activation condition OBR	Overbooked Blocks Ratio »[0.0..0.3]: Fraction of recent overbooked blocks, based on long-term exponential averaging with effective window length of ~114 days. It gets updated every block.
+: Block height of the block that achieves BIP10X activation condition
+;OBR
+: Overbooked Blocks Ratio »[0.0..0.3]: Fraction of recent overbooked blocks, based on long-term exponential averaging with effective window length of ~114 days. It gets updated every block.
 ;Operational Phase
 : Starts with the first block mined acc. to BIP10X rules (block M), with BSL vote included in the block header.
 ;Overbooked block
