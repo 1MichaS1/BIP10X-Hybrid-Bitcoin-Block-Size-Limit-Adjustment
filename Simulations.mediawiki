@@ -24,6 +24,14 @@ Note: The algorithm assumes that before start of BIP10X, the BSL was constant an
 
 ![Sim01](https://cloud.githubusercontent.com/assets/14133304/9701890/5f3cccfa-5443-11e5-806a-e3c2d8cf82a3.png)
 
+[https://cloud.githubusercontent.com/assets/14133304/9701890/5f3cccfa-5443-11e5-806a-e3c2d8cf82a3.png]
+
+[[https://cloud.githubusercontent.com/assets/14133304/9701890/5f3cccfa-5443-11e5-806a-e3c2d8cf82a3.png]]
+
+[[Image:https://cloud.githubusercontent.com/assets/14133304/9701890/5f3cccfa-5443-11e5-806a-e3c2d8cf82a3.png]]
+
+[[File:https://cloud.githubusercontent.com/assets/14133304/9701890/5f3cccfa-5443-11e5-806a-e3c2d8cf82a3.png]]
+
 ((IMAGE))
 
 Zoomed-in for the first 4 years, illustrating doubling every 2 years:
