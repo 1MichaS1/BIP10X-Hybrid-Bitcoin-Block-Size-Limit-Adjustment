@@ -1,1 +1,5 @@
+How this BIP becomes activated and operational.
+
+Note: Here block M occurs 504 blocks before a difficulty adjustment. Acc. to this BIP it could equally well occur 504 blocks after a difficulty adjustment (depends on when activation conditions <nowiki>[=block N]</nowiki> is achieved).
+
 <img src=timeline_of_this_bip](https://cloud.githubusercontent.com/assets/14133304/9701886/16f298da-5443-11e5-9193-572aa24dbb52.png></img>
