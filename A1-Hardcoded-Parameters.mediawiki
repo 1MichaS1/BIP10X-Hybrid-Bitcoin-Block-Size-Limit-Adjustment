@@ -34,9 +34,7 @@
 
 ====Block Size Limit averaging and constraints:====
 
-* 32244/32768 <nowiki>[~0.984]</nowiki> = Forgetting_factor determining “average” BSL, which is the basis for limiting the long-term growth of the BSL. It corresponds to an effective window length of 
-
-: 1/(1-0.984) ~ 62.5 weeks ~ 1.2 years
+* 32244/32768 <nowiki>[~0.984]</nowiki> = Forgetting_factor determining “average” BSL, which is the basis for limiting the long-term growth of the BSL. It corresponds to an effective window length of<br>1/(1-0.984) ~ 62.5 weeks ~ 1.2 years
 
 * 189/128=1.4765625 = Parameter limiting the max. long-term growth of BSL to ca. 41% p.a. (together with above forgetting factor) under “normal voting conditions”
 
