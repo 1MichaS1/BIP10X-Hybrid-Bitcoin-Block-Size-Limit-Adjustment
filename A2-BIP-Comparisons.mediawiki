@@ -20,9 +20,9 @@ Here is a concise comparison table, based on [https://lists.linuxfoundation.org/
 
 ====Block Size Limit growth/decline:====
 
-[1] BIP100:	By miner voting, x0.5 – x2.0 every 12000 blocks (~3 months)<br>
-:: --> max growth rate: +1982% p.a. (x20.82 p.a.)<br>
-:: --> max decline rate: ‑95.2% p.a. (x0.048 p.a.)<br>
+[1] BIP100:	By miner voting, x0.5 – x2.0 every 12000 blocks (~3 months)
+:: --> max growth rate: +1982% p.a. (x20.82 p.a.)
+:: --> max decline rate: ‑95.2% p.a. (x0.048 p.a.)
 
 [2] BIP101:	Fixed growth rate: +41.4% p.a. = +100% every 2 years
 
