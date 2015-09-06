@@ -76,7 +76,7 @@ In case of a 80% vote majority for one direction, more relaxed constraints are a
 
 ===Part 4: Absolute Limits on the BlockSizeLimit===
 
-The TOTAL min/max limits on BlockSizeLimit are set to 1 MB and 60.1 GB respectively. The value of 60.1 GB is the result of the concrete implementation proposal of the voting format and is not expected to be met any time soon, if ever (even theoretically(!), it cannot be reached before 2043, or before 2029 with continuous >80% miner support [assuming 10min block times and the greatest possible starting BlockSizeLimit of 4 MB]).
+The TOTAL min/max limits on BlockSizeLimit are set to 1 MB and 60.1 GB respectively. The value of 60.1 GB is the result of the concrete implementation proposal of the voting format and is not expected to be met any time soon, if ever (even theoretically(!), it cannot be reached before 2043, or before 2029 with continuous >80% miner support <nowiki>[assuming 10min block times and the greatest possible starting BlockSizeLimit of 4 MB]</nowiki>).
 
 Block sizes are signalled by 7 bits (x = 0..127), signifying values of 2^(x/8) Mbytes. This means that 128 distinct block sizes between 1 MB and 60.1 GB can be voted for, in incremental steps of ca. +9.05%.
 
