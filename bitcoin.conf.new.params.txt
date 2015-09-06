@@ -1,0 +1,29 @@
+# Miner's Block Size Limit vote (BIP10X):
+#
+# Specify the block size limit (BSL) as a special parameter:
+# blocksizelimitvote=0           -> “keep current Block Size Limit unchanged”
+#
+# Specify the block size limit (BSL) in number of bytes, possible values e.g.:
+# blocksizelimitvote=1000000     -> means  1 MB vote (smallest possible value)
+#                   =8000000     -> means  8 MB vote
+#                   =61000000000 -> means 61 GB vote
+#
+# Specify the block size limit (BSL) as multiples of average *actual* block size of last 1008 bocks:
+# blocksizelimitvote=1.2a        -> 1.2 x average actual block size of last 1008 bocks
+# blocksizelimitvote=1.7a        -> 1.7 x average actual block size of last 1008 bocks - DEFAULT !
+# blocksizelimitvote=2.2a        -> 2.2 x average actual block size of last 1008 bocks
+# blocksizelimitvote=3.0a        -> 3.0 x average actual block size of last 1008 bocks
+#
+# General remark: Actual vote will be <= blocksizelimitvote (up to 8.3% smaller) because of the
+# protocol's exponential granularity resolution grid of possible voting values.
+blocksizelimitvote=1.7a
+
+# Overbooking strategy of the miner (BIP10X):
+# Tendency of miner to create blocks greater than current nominal block size limit (up to 4x).
+# blockoverbookingtendency=1.0  -> never do any overbooking
+#                         =1.5  -> low tendency for overbooking, never more than 1.5x nominal BSL
+#                         =2.0  -> intermediate tendency, never more than factor 2.0 - DEFAULT !
+#                         =3.0  -> intermediate tendency for overbooking, never more than 3.0x
+#                         =3.5  -> high tendency for overbooking, never more than 3.5x nominal BSL
+#                         =4.0  -> fill blocks to the max. from the mem pool, up to 4x nominal BSL.
+blockoverbookingtendency=2.0
