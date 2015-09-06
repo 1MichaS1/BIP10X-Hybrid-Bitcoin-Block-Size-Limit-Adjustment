@@ -2,14 +2,14 @@
 
 With constraint '''(C‑2)''' of the BSL calculation, the long-term change rate of the BSL gets limited. Depending on the “voting conditions”, one out of two sets of min/max limits apply. First we look at “normal voting conditions” - this is the situation when there is NOT a >80% miner majority voting for a strong in- or decrease of BSL.
 
-In this case, every time that a new BSL is calculated from miners' votes and from actual block sizes (i.e. every 1008 blocks »1 week), the new BSL_curr is constrained to be below
+In this case, every time that a new BSL is calculated from miners' votes and from actual block sizes (i.e. every 1008 blocks ~ 1 week), the new BSL_curr is constrained to be below
 :: 189/128*''BSL_LongTermAvg'' = 1.4765625*''BSL_LongTermAvg''
 and above
 :: 110/128*''BSL_LongTermAvg'' = 0.8593750*''BSL_LongTermAvg''
 
 After BSL_curr has been determined this way, long-term average is updated by
 :: ''BSL_LongTermAvg'' =  32244/32768*''BSL_LongTermAvg'' + (1‑32244/32768)*''BSL_curr''.
-:: (32244/32768 » 0.984)
+:: (32244/32768 ~ 0.984)
 
 The three parameters 189/128, 110/128 and 32244/32768 determine growth/decline rates.
 A simulation has been written (source code in appendix) for FreeMat 4.0 and has been run for various extreme cases of maximum growth and decline rates.
