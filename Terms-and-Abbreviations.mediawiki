@@ -37,7 +37,7 @@
 ;N
 : Block height of the block that achieves BIP10X activation condition
 ;OBR
-: Overbooked Blocks Ratio »[0.0..0.3]: Fraction of recent overbooked blocks, based on long-term exponential averaging with effective window length of ~114 days. It gets updated every block.
+: Overbooked Blocks Ratio ~[0.0..0.3]: Fraction of recent overbooked blocks, based on long-term exponential averaging with effective window length of ~114 days. It gets updated every block.
 ;Operational Phase
 : Starts with the first block mined acc. to BIP10X rules (block M), with BSL vote included in the block header.
 ;Overbooked block
