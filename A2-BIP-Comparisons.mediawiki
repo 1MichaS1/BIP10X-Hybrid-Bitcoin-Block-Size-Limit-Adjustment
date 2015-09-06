@@ -4,7 +4,7 @@ Here is a concise comparison table, based on [https://lists.linuxfoundation.org/
 
 ----
 
-====Block size limit evolution mechanism:====
+====Block Size Limit evolution mechanism:====
 
 [1] BIP100:	UP/DOWN	miner voting
 
