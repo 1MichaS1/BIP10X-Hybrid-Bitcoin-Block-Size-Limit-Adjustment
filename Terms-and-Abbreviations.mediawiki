@@ -1,1 +1,57 @@
-x
+==Terms, Abbreviations and Symbols==
+
+;aABS
+: avg. ABS of the last 1008 blocks, calculated at the end of a BSL voting interval
+;ABS
+: Actual Block Size of a block
+;Activation Phase
+: The time before BIP10X's 75% supermajority is achieved, i.e. until block N-1.
+;BSL
+: Block Size Limit
+;BSL_LongTermAvg
+: This is the long-term exponential average (62.5 weeks “eff. window length”) of the Block Size Limit BSL_curr. It gets updated once every 1008 blocks (»1 week).
+;BSE
+: Block Size Exponent: An integer k ³ 0 in BSE format represents the number 2^(k/8) and a block size (limit) of 2^(k/8)*1,000,000 bytes, i.e. k=0..127 represents sizes ranging from 1 MB to 60.1 GB in increments of » +9.05%.
+;“BSE resolution grid”
+: This is the grid of 128 distinct numbers that BSL_curr has to lie on. Due to the fact that BSL_curr is expressed by an exponent in BSE format, it can only assume values on a given logarithmic “BSE resolution grid”, mapping to the BSE exponents 0..127. Any two successive values differ by a factor 2^(1/8) » 1.0905.
+;BSL_curr
+: Current nominal BSL – the BSL applicable for the current block. It remains unchanged for 1008 blocks (=voting interval).
+;BTC
+: bitcoins (currency unit) ceil(x)	= x rounded up to nearest full integer “Effective	Mathematical expression for the length in time that an exponential averaging window length”	window needs to reach back in time until the averaging weight has decayed to 36.8% (=1/e) of the weight at the present time (see also “forgetting factor”).
+;floor(x)
+: = x rounded down to nearest full integer
+;Forgetting factor
+: Averaging parameter in range [0..1) for exponential time averaging of any kind of value that changes with time (or event count). The general equation is:
+: valueAvg(k) = forgettingFactor*valueAvg(k-1) + (1-forgettingFactor)*valueNew
+: A value of  forgettingFactor=0 means that no averaging is done at all.
+;Grace Period
+: Starts with BIP10X supermajority achievement (block N) until one block before starting mining using BIP10X rules (i.e. until block M-1).
+;M
+: Block height of first block being mined acc. to BIP10X rules, M = N + delta, with delta Î {2016..3023}. M is 504 blocks away from the nearest difficulty adjustment.
+MSB	Most significant bit
+;N
+: Block height of the block that achieves BIP10X activation condition OBR	Overbooked Blocks Ratio »[0.0..0.3]: Fraction of recent overbooked blocks, based on long-term exponential averaging with effective window length of ~114 days. It gets updated every block.
+;Operational Phase
+: Starts with the first block mined acc. to BIP10X rules (block M), with BSL vote included in the block header.
+;Overbooked block
+: This is a block with size greater than the current nominal block size limit ''BSL_curr''. It is by a factor of up to 4 greater than ''BSL_curr''.
+;Overbooking
+: The method of creating overbooked blocks.
+;rBSE
+: “Relative Block Size Exponent” format specifies a number relative to BSL_curr. A miner's vote is specified in rBSE format as a value relative to BSL_curr, keeping the BSE resolution grid.
+;SW
+: Software
+;TPS
+: Transactions per second
+;TX
+: Bitcoin transaction
+;vBSL_50
+: The 50%-ile (=median) vote of the miners' votes from the last voting interval. It is the “main” vote that usually determines the new BSL.
+;vBSL_20i
+: The 20%-ile vote of the last voting interval. By definition it is £ vBSL_50, but if vBSL_20i indicates a BSL increase, it will meet less strict constraints for long-term increase than vBSL_50. Hence, even if smaller than vBSL_50 before the constraints, it can be greater than vBSL_50 after the constraints. It can therefore speed-up BSL growth if there is substantial (80%) miner support.
+;vBSL_80d
+: The 80%-ile vote of the last voting interval. By definition it is ³ vBSL_50, but if vBSL_80d indicates a BSL decrease, it will meet less strict constraints for long-term decrease than vBSL_50. Hence BSL decline can speed-up if there is substantial (80%) miner support.
+;Vote
+: An expression of a miner's preferred BSL, indicated in the header's version number field of a block. The votes have a granularity of » 9.05% step increments acc. to the BSE format.
+;Voting interval
+: An interval of 1008 blocks, from block M+n*1008 to M+n*1008+1007, n >= 0.
