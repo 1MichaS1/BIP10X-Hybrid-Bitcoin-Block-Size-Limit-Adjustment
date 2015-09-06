@@ -1,0 +1,17 @@
+==How to Use FreeMat Tool for the Simulations==
+
+Simulations were done using FreeMat 4.0. FreeMat is freely available under GPLv2 license for all major operating systems. To execute this simulation script, do the following steps:
+
+* Copy-paste the source code below to an empty text editor window and save as “BSL_change.m” or any other file name ending with “.m” (file name has only letters, numbers and underscore, first character is a letter).
+
+* Install FreeMat 4.0 or later.
+
+* Start up FreeMat. You see the GUI as shown in the screenshot below.
+
+** Browse <span style="color:red">(1)</span> to the director where your file “BSL_change.m” is located. You can also use “cd” command like in the console of your operating system.
+
+** Type <span style="color:red">(2)</span> “edit BSL_change.m” <ENTER> to open the file in an m-file editor with syntax highlighting.
+
+** Modify the parameters as desired, in the parameter section of “BSL_change.m”.
+
+** Type <span style="color:red">(3)</span> “BSL_change” <ENTER> to execute the script which starts the simulation.
