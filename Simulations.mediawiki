@@ -78,4 +78,4 @@ However, if the “peaks” happen more often, they will eventually have an endu
 
 <img src=https://cloud.githubusercontent.com/assets/14133304/9701901/5f7b95b6-5443-11e5-8c2c-e7a511597d3b.png></img>
 
-The last figure above illustrates the situation in case that the percentage of blocks experiencing a “boost” of the block size limit due to 80% majority vote is equal to [0%, 10%, 20%, 33%, 50%, 67%, 80%, 90%, 100%] respectively.
+The last figure above illustrates the situation in case that the percentage of blocks experiencing a “boost” of the block size limit due to 80% majority vote is equal to <nowiki>[0%, 10%, 20%, 33%, 50%, 67%, 80%, 90%, 100%]</nowiki> respectively.
