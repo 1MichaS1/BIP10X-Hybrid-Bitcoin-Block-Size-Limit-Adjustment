@@ -1,6 +1,6 @@
 ==Simulations==
 
-With constraint '''(C‑2)''' (="Part3") of the BSL calculation, the long-term change rate of the BSL gets limited. Depending on the “voting conditions”, one out of two sets of min/max limits apply. First we look at “normal voting conditions” - this is the situation when there is NOT a >80% miner majority voting for a strong in- or decrease of BSL.
+With constraint '''(C‑2)''' (="Part 3") of the BSL calculation, the long-term change rate of the BSL gets limited. Depending on the “voting conditions”, one out of two sets of min/max limits apply. First we look at “normal voting conditions” - this is the situation when there is NOT a >80% miner majority voting for a strong in- or decrease of BSL.
 
 In this case, every time that a new BSL is calculated from miners' votes and from actual block sizes (i.e. every 1008 blocks ~ 1 week), the new BSL_curr is constrained to be below
 :: 189/128*''BSL_LongTermAvg'' = 1.4765625*''BSL_LongTermAvg''
@@ -14,7 +14,7 @@ After BSL_curr has been determined this way, long-term average is updated by
 The three parameters 189/128, 110/128 and 32244/32768 determine growth/decline rates.
 A simulation has been written (source code in appendix) for FreeMat 4.0 and has been run for various extreme cases of maximum growth and decline rates.
 
-The parameters are chosen by design such that a doubling every 2 years and a halving every 8 years is achieved when each BSL update pushes against the respective limit of (C‑2) (="Part3"). This is verified by simulation, as shown below.
+The parameters are chosen by design such that a doubling every 2 years and a halving every 8 years is achieved when each BSL update pushes against the respective limit of (C‑2) (="Part 3"). This is verified by simulation, as shown below.
 
 The following simulations and diagrams assume without loss of generality, that BIP10X activation (more precisely block ''M''+1008) occurs in the beginning of year 2016.
 
@@ -22,7 +22,7 @@ Note: The algorithm assumes that before start of BIP10X, the BSL was constant an
 
 ----
 
-'''(SIM-01)''' In the '''maximum growth case''', it is assumed that all votes are sufficiently high or the blocks themselves are sufficiently occupied (actually, only the latter is sufficient), such that the actual limit for BSL growth is determined by constraint (C‑2) (="Part3"). Simulation started with initial condition BSL_curr='''1 MB''' and then maximized growth rate. It can be seen that a fairly constant growth rate of +41% per year (+100% per 2 years) is achieved from the beginning.
+'''(SIM-01)''' In the '''maximum growth case''', it is assumed that all votes are sufficiently high or the blocks themselves are sufficiently occupied (actually, only the latter is sufficient), such that the actual limit for BSL growth is determined by constraint (C‑2) (="Part 3"). Simulation started with initial condition BSL_curr='''1 MB''' and then maximized growth rate. It can be seen that a fairly constant growth rate of +41% per year (+100% per 2 years) is achieved from the beginning.
 
 <img src=https://cloud.githubusercontent.com/assets/14133304/9701890/5f3cccfa-5443-11e5-806a-e3c2d8cf82a3.png></img>
 
@@ -34,7 +34,7 @@ Zoomed-in for the first 4 years, illustrating doubling every 2 years:
 
 ----
 
-'''(SIM-02)''' In the '''maximum decline case''', it is assumed that miner votes are sufficiently low or the blocks themselves are sufficiently empty (actually only the latter is sufficient), such that actual limit for BSL decline is determined by constraint (C‑2) (="Part3"). Simulation started with initial condition BSL_curr='''4 MB''', and then maximized decline rate.
+'''(SIM-02)''' In the '''maximum decline case''', it is assumed that miner votes are sufficiently low or the blocks themselves are sufficiently empty (actually only the latter is sufficient), such that actual limit for BSL decline is determined by constraint (C‑2) (="Part 3"). Simulation started with initial condition BSL_curr='''4 MB''', and then maximized decline rate.
 As intended by design, we see a halving every 8 years (first time at t_ref+8years, with t_ref being one year before BIP10X starts.)
 
 <img src=https://cloud.githubusercontent.com/assets/14133304/9701894/5f543c6e-5443-11e5-99e8-944262172d65.png></img>
@@ -45,7 +45,7 @@ As intended by design, we see a halving every 8 years (first time at t_ref+8year
 ----
 
 The following shows the analogous simulations for the case that growth/decline is '''boosted by >80% miner votes''', such that the BSL doubling/halving rates are roughly speed-up by a factor of 2.
-Now, constraint '''(C‑2)''' (="Part3") is less restricitive than before and is restricting BSL_curr to be below
+Now, constraint '''(C‑2)''' (="Part 3") is less restricitive than before and is restricting BSL_curr to be below
 :: 247/128*BSL_LongTermAvg = 1.9296875*BSL_LongTermAvg
 and above
 :: 98/128*BSL_LongTermAvg = 0.7656250*BSL_LongTermAvg
