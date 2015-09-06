@@ -1,0 +1,69 @@
+===A.1 Overview of BIP10X's Hardcoded Parameters and Design Choices===
+
+====Voting and direct Block Size Limit parameters:====
+
+* 75% = miner majority for BIP10X activation
+
+* 50% = 50% of BIP101 miners are contributing to the BIP10X activation condition
+
+* 80% = majority determining the initial BSL (i.e. 20% quantile)
+
+* 50% = quantile (median) for normal BSL adjustment
+
+* 80% = majority (20% and 80% quantile) for accelerated BSL adjustment 
+
+* 1MB = min. value for initial BSL
+
+* 4MB = max. value for initial BSL
+
+* 1,000,000 byte = floor(2^(0/8) * 1 MB) = absolute minimum BSL
+
+* 60,096,776,975 byte= floor(2^(127/8) * 1 MB) [» 60.1 GB] = absolute maximum BSL
+
+* 3,938,502,375,863,834 byte= floor(2^(255/8) * 1 MB) [» 3939 TB] = absolute maximum BSL when activating a yet reserved bit (by simple hard-fork in a very distant future)
+
+* 2^(1/8) [»1.090508] = step increment factor of possible BSL values
+
+* 2^(6/8) [»1.6818] = greatest instantaneous BSL adjustment step factor (in either direction)
+
+* 1008 blocks initial voting interval
+
+* 1008 blocks normal voting interval
+
+* 2016..3023 blocks grace period length
+
+====Block Size Limit averaging and constraints:====
+
+* 32244/32768 [»0.984] = Forgetting_factor determining “average” BSL, which is the basis for limiting the long-term growth of the BSL. It corresponds to an effective window length of 
+
+* 1/(1-0.984) » 62.5 weeks » 1.2 years
+
+* 189/128=1.4765625 = Parameter limiting the max. long-term growth of BSL to ca. 41% p.a. (together with above forgetting factor) under “normal voting conditions”
+
+* 110/128=0.8593750 = Parameter limiting the max. long-term decline of BSL to ca. ‑8% p.a. (together with above forgetting factor) under “normal voting conditions”
+
+* 247/128=1.9296875 = Parameter limiting the max. long-term growth of BSL to ca. 100% p.a. (together with above forgetting factor) in case of >80% miner up-vote
+
+* 98/128=0.7656250 = Parameter limiting the max long-term decline of BSL to ca. ‑16% p.a. (together with above forgetting factor) in case of >80% miner down-vote
+
+* [39704/32768 ; 150244/32768] [ »[1.21;4.59] ] = Range relative to the average actual block size of the last voting period (=1008 blocks). The effective BSL vote is forced to lie within this range.
+
+====Overbooking of blocks:====
+
+* 16383/16384 = 0.99993896484375 = Forgetting factor for calculating average overbooked blocks ratio. It corresponds to an eff. window length of 114 days = 16.25 weeks = 1/3 year.
+
+* 2 = max. overbooking factor for up to 30% overbooking
+
+* 30% = max. ratio of overbooked blocks 
+
+* 4 = max. overbooking factor for up to 10% overbooking
+
+* 10% = max. ratio of blocks overbooked by more than factor 2
+
+* 25% = fraction of “excess” TX fees to be burned for overbooked blocks.
+
+====bitcoin.conf default parameters:====
+
+* 1.7a = default parameter of blocksizelimitvote
+
+* 2.0 = default parameter of blockoverbookingtendency
