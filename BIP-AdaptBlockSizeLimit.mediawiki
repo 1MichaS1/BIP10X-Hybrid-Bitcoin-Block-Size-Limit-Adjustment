@@ -3,6 +3,7 @@
   Title: Hybrid Mechanism Adjusting Block Size Limit
   Author: Michael_S user of bitcointalk.org
   Discussions-To: https://bitcointalk.org/index.php?topic=1166970.0
+  Discussions-To: https://www.reddit.com/r/Bitcoin/comments/3jvb0i/bip10x_a_hybrid_mechanism_for_blocksizelimit/
   Status: Draft
   Type: Standards Track
   Created: 2015-08-31
