@@ -162,7 +162,7 @@ SPV wallets are not affected and require no change or update.
 
 ==Deployment==
 
-Software that is compliant with this BIP can be deployed any time. As soon as a 75% supermajority is achieved (same percentage as proposed in BIP101), consensus is reached and the changes of this protocol will activate after a 2-3 week grace period, leaving other miners sufficient time for upgrading to the new protocol version.
+Software that is compliant with this BIP can be deployed any time. As soon as a 75% supermajority is achieved (same percentage as proposed in BIP101), the protocol irrevocably decides that the changes of this protocol will activate after a 2-3 week grace period, leaving other miners sufficient time for upgrading to the new protocol version.
 
 If implementation and testing of this BIP10X takes too long while actual block sizes are alredy approaching current block size limit, then time should be gained by temporarily raising block size limit to 2 MB via BIP102, before finally deploying this BIP10X.
 
