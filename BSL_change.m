@@ -167,7 +167,7 @@ elseif Direction == -1,% DECLINE Case
         end 
         if (rand()<probability_one_step_less) ... 
             || pattern_one_step_less(1+mod(k-52,length(pattern_one_step_less))), 
-            % A random event causes the growth to be not quite as big as it could be: 
+            % A random event causes the decline to be not quite as big as it could be: 
             BSE = BSE + 1; 
         end 
         BSL_vector(k) = floor(2^(BSE/8)*1e6); 
