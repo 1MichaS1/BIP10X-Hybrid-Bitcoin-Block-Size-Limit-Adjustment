@@ -95,7 +95,7 @@ Votes and some other information needed for this BIP are included in unused part
 
 ==Rationale==
 
-The rationale for using miner voting in the first place is to "institutionalize" a voting mechanism inside the protocol. This will avoid that "de-factor" voting is taking place in the future via hard-forks for BlockSizeLimit adaptations while the deployed SW itself does not support any voting. While BIP100 already proposes miner voting, it has some drawbacks in the way how it is specified in detail. These drawbacks are aimed to be removed by this "BIP10X".
+The rationale for using miner voting in the first place is to "institutionalize" a voting mechanism inside the protocol. This will avoid that "de-facto" voting is taking place in the future via hard-forks for BlockSizeLimit adaptations while the deployed SW itself does not support any voting. While BIP100 already proposes miner voting, it has some drawbacks in the way how it is specified in detail. These drawbacks are aimed to be removed by this "BIP10X".
 
 ===Rationale Part 0: Miner Voting for Initial BlockSizeLimit to Start With===
 
