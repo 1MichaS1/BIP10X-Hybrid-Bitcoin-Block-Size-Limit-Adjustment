@@ -1,0 +1,79 @@
+==Simulations==
+
+With constraint '''(C‑2)''' of the BSL calculation, the long-term change rate of the BSL gets limited. Depending on the “voting conditions”, one out of two sets of min/max limits apply. First we look at “normal voting conditions” - this is the situation when there is NOT a >80% miner majority voting for a strong in- or decrease of BSL.
+
+In this case, every time that a new BSL is calculated from miners' votes and from actual block sizes (i.e. every 1008 blocks »1 week), the new BSL_curr is constrained to be below
+:: 189/128*''BSL_LongTermAvg'' = 1.4765625*''BSL_LongTermAvg''
+and above
+:: 110/128*''BSL_LongTermAvg'' = 0.8593750*''BSL_LongTermAvg''
+
+After BSL_curr has been determined this way, long-term average is updated by
+:: ''BSL_LongTermAvg'' =  32244/32768*''BSL_LongTermAvg'' + (1‑32244/32768)*''BSL_curr''.
+:: (32244/32768 » 0.984)
+
+The three parameters 189/128, 110/128 and 32244/32768 determine growth/decline rates.
+A simulation has been written (source code in appendix) for FreeMat 4.0 and has been run for various extreme cases of maximum growth and decline rates.
+
+The parameters are chosen by design such that a doubling every 2 years and a halving every 8 years is achieved when each BSL update pushes against the respective limit of (C‑2). This is verified by simulation, as shown below.
+
+The following simulations and diagrams assume without loss of generality, that BIP10X activation (more precisely block M+1008) occurs in the beginning of year 2016.
+
+Note: The algorithm assumes that before start of BIP10X, the BSL was constant and identical to the BSL value set as initial BSL. This is because ''BSL_LongTermAvg'' is initialized with the initial ''BSL_curr'', as specified in ch. 2.2. As a consequence, the “reference start time” of the adjustment is implicitly back-dated to a point in time that lies one year before BIP10X activation. Therefore, the first BSL doubling occurs already 1 year after BIP10X activation, but then every 2 years afterwards. This can be nicely seen in the 3rd figure of simulation (SIM‑01).
+
+'''(SIM-01)''' In the '''maximum growth case''', it is assumed that all votes are sufficiently high or the blocks themselves are sufficiently occupied (actually, only the latter is sufficient), such that the actual limit for BSL growth is determined by constraint (C‑2). Simulation started with initial condition BSL_curr='''1 MB''' and then maximized growth rate. It can be seen that a fairly constant growth rate of +41% per year (+100% per 2 years) is achieved from the beginning.
+
+((IMAGE))
+
+((IMAGE))
+
+Zoomed-in for the first 4 years, illustrating doubling every 2 years:
+((IMAGE))
+
+
+'''(SIM-02)''' In the '''maximum decline case''', it is assumed that miner votes are sufficiently low or the blocks themselves are sufficiently empty (actually only the latter is sufficient), such that actual limit for BSL decline is determined by constraint (C‑2). Simulation started with initial condition BSL_curr='''4 MB''', and then maximized decline rate.
+As intended by design, we see a halving every 8 years (first time at t_ref+8years, with t_ref being one year before BIP10X starts.)
+
+((IMAGE))
+
+((IMAGE))
+
+----
+
+The following shows the analogous simulations for the case that growth/decline is '''boosted by >80% miner votes''', such that the BSL doubling/halving rates are roughly speed-up by a factor of 2.
+Now, constraint '''(C‑2)''' is less restricitive than before and is restricting BSL_curr to be below
+:: 247/128*BSL_LongTermAvg = 1.9296875*BSL_LongTermAvg
+and above
+:: 98/128*BSL_LongTermAvg = 0.7656250*BSL_LongTermAvg
+
+The effect is shown in the following simulations:
+(In the simulation script, we set the parameter random_80percent_boost = 1.0 )
+
+'''(SIM-03)''' Simulations for the growth case show a doubling in a bit more than 1 year, as intended by design. For example, after 10 years (2015 → 2025) BSL has increased by roughly a factor 2^10=1024, which corresponds to 10 doublings, i.e. one per year, and further doublings the years after:
+
+((IMAGE))
+
+((IMAGE))
+
+Zoomed-in:
+((IMAGE))
+
+
+'''(SIM-04)''' Simulations for the decline case show a halving every 4 years, as intended by design:
+
+((IMAGE))
+
+((IMAGE))
+
+----
+
+The following shows the situation that a certain percentage of blocks gets the “80% vote boost”. For the sake of illustration, it is assumed that the boost occurs in regular intervals, e.g. every 3rd week in case that 33.3% of blocks get the “80% majority upvote”:
+
+The first of the following two figures illustrates the situation for the 10% case: For every 10th block, the relaxed growth constraints that are applicable to the “80% upvote” are applied, hence the block size limit shows peaks. For the nine blocks afterwards the normal and tighter constraints apply, hence the block size limit goes back down again, normally to where it was before the peak.
+Note that the constraint is applied relative to the long-term average block size limit (ca. 1-2 year average), so a single peak from the boost only contributes by a small fraction to the long-term average and does not affect the long-term growth rate a lot.
+However, if the “peaks” happen more often, they will eventually have an enduring effect on long-term growth rate, as is illustrated by the second figure below.
+
+((IMAGE))
+
+((IMAGE))
+
+The last figure above illustrates the situation in case that the percentage of blocks experiencing a “boost” of the block size limit due to 80% majority vote is equal to [0%, 10%, 20%, 33%, 50%, 67%, 80%, 90%, 100%] respectively.
