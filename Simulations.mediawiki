@@ -20,6 +20,8 @@ The following simulations and diagrams assume without loss of generality, that B
 
 Note: The algorithm assumes that before start of BIP10X, the BSL was constant and identical to the BSL value set as initial BSL. This is because ''BSL_LongTermAvg'' is initialized with the initial ''BSL_curr'', as specified in ch. 2.2. As a consequence, the “reference start time” of the adjustment is implicitly back-dated to a point in time that lies one year before BIP10X activation. Therefore, the first BSL doubling occurs already 1 year after BIP10X activation, but then every 2 years afterwards. This can be nicely seen in the 3rd figure of simulation (SIM‑01).
 
+----
+
 '''(SIM-01)''' In the '''maximum growth case''', it is assumed that all votes are sufficiently high or the blocks themselves are sufficiently occupied (actually, only the latter is sufficient), such that the actual limit for BSL growth is determined by constraint (C‑2). Simulation started with initial condition BSL_curr='''1 MB''' and then maximized growth rate. It can be seen that a fairly constant growth rate of +41% per year (+100% per 2 years) is achieved from the beginning.
 
 <img src=https://cloud.githubusercontent.com/assets/14133304/9701890/5f3cccfa-5443-11e5-806a-e3c2d8cf82a3.png></img>
@@ -30,6 +32,7 @@ Zoomed-in for the first 4 years, illustrating doubling every 2 years:
 
 <img src=https://cloud.githubusercontent.com/assets/14133304/9701892/5f497842-5443-11e5-9960-7fb390d3fea9.png></img>
 
+----
 
 '''(SIM-02)''' In the '''maximum decline case''', it is assumed that miner votes are sufficiently low or the blocks themselves are sufficiently empty (actually only the latter is sufficient), such that actual limit for BSL decline is determined by constraint (C‑2). Simulation started with initial condition BSL_curr='''4 MB''', and then maximized decline rate.
 As intended by design, we see a halving every 8 years (first time at t_ref+8years, with t_ref being one year before BIP10X starts.)
@@ -38,6 +41,7 @@ As intended by design, we see a halving every 8 years (first time at t_ref+8year
 
 <img src=https://cloud.githubusercontent.com/assets/14133304/9701893/5f506a08-5443-11e5-931a-70c0f8acbf73.png></img>
 
+----
 ----
 
 The following shows the analogous simulations for the case that growth/decline is '''boosted by >80% miner votes''', such that the BSL doubling/halving rates are roughly speed-up by a factor of 2.
@@ -59,6 +63,7 @@ Zoomed-in:
 
 <img src=https://cloud.githubusercontent.com/assets/14133304/9701897/5f63960a-5443-11e5-8be4-7c094df99fe9.png></img>
 
+----
 
 '''(SIM-04)''' Simulations for the decline case show a halving every 4 years, as intended by design:
 
@@ -66,6 +71,7 @@ Zoomed-in:
 
 <img src=https://cloud.githubusercontent.com/assets/14133304/9701899/5f72cda0-5443-11e5-8b92-693383794672.png></img>
 
+----
 ----
 
 The following shows the situation that a certain percentage of blocks gets the “80% vote boost”. For the sake of illustration, it is assumed that the boost occurs in regular intervals, e.g. every 3rd week in case that 33.3% of blocks get the “80% majority upvote”:
