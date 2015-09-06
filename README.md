@@ -4,4 +4,4 @@ This Bitcoin Improvement Proposal (BIP) intends to combine the best of BIP100 an
 
 For main description read:
 
-<b>BIP-AdaptBlockSizeLimit.mediawiki</b>
+<b><a href=https://github.com/1MichaS1/BIP10X-Hybrid-Bitcoin-Block-Size-Limit-Adjustment/blob/master/BIP-AdaptBlockSizeLimit.mediawiki> BIP-AdaptBlockSizeLimit.mediawiki</a></b>
