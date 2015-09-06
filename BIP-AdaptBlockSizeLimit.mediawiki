@@ -1,5 +1,5 @@
 <pre>
-  BIP: 10X (not applied for a BIP number yet)
+  BIP: 10X (not assigned a BIP number yet)
   Title: Hybrid Mechanism Adjusting Block Size Limit
   Author: Michael_S user of bitcointalk.org
   Discussions-To: https://bitcointalk.org/index.php?topic=1166970.0
