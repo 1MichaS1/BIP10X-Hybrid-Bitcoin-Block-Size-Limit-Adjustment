@@ -1,1 +1,152 @@
 ===A.2 Comparison of Different Block Size Evolution Proposals===
+
+Here is a concise comparison table, based on [https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2015-July/009808.html this] and further extended:
+
+----
+
+====Block size limit evolution mechanism:====
+
+[1] BIP100:	UP/DOWN	miner voting
+
+[2] BIP101: UP	fixed exponential growth schedule
+
+[3] BIP102:	FIX	constant block size limit
+
+[4] BIP103:	UP	fixed exponential growth schedule
+
+[x] BIP10X:	UP/DOWN	miner voting and actual block size; plus short-term adaptation to temporary peaks.
+
+----
+
+====Block Size Limit growth/decline:====
+
+[1] BIP100:	By miner voting, x0.5 – x2.0 every 12000 blocks (~3 months)<br>
+:: --> max growth rate: +1982% p.a. (x20.82 p.a.)<br>
+:: --> max decline rate: ‑95.2% p.a. (x0.048 p.a.)<br>
+
+[2] BIP101:	Fixed growth rate: +41.4% p.a. = +100% every 2 years
+
+[3] BIP102:	+/‑0% p.a. (2 MByte static)
+
+[4] BIP103:	Fixed growth rate: +17.7% p.a. = +100% every 4.3 years (+4.4% every 97 days) 
+
+[x] BIP10X:	Depending on actual block size and miner's votes (median of all votes),
+:: long-term growth/decline rate restricted to	max. +41% p.a. / ‑8% p.a.
+:: = +100% in 2 years / ‑50% in 8 years.
+:: With 80% miner support, maximum rates get pushed to	+100% p.a. / ‑16% p.a.
+
+----
+
+====Voting abuse possible by miner minority:====
+
+[1] BIP100:	Yes, miner minority (~20%) can enforce excessive BSL decline of ca. ‑95% p.a.
+
+[2] BIP101:	No (no miner vote)
+
+[3] BIP102:	No (no miner vote)
+
+[4] BIP103:	No (no miner vote)
+
+[x] BIP10X:	No, a miner minority making excessive votes in either direction has no effect at all.
+
+----
+
+====Voting abuse possible by miner majority:====
+[1] BIP100:	Yes, may enforce excessive growth/decline rate of ca. +2000% p.a. or -95% p.a.
+
+[2] BIP101:	No (no miner vote)
+
+[3] BIP102:	No (no miner vote)
+
+[4] BIP103:	No (no miner vote)
+
+[x] BIP10X:	Limited: Miner vote can influence growth/decline rate only within [-16%..+100%] p.a.
+:: But if actual block size does not keep pace with miner vote, even a 100% miner vote
+:: cannot change the block size limit.
+
+----
+
+====Risk due to “lazy” miner operators who keep bitcoin.conf unmodified:====
+
+[1] BIP100:	?? - Default voting mechanism not specified.
+
+[2] BIP101:	No (no miner vote)
+
+[3] BIP102:	No (no miner vote)
+
+[4] BIP103:	No (no miner vote)
+
+[x] BIP10X:	No. Default parameter causes reasonable vote for ca. 1.63 times avg. actual block size
+
+----
+
+====Block Size Limit at initiation:====
+
+[1] BIP100:	1MB 
+
+[2] BIP101:	>=8MB (dpdt. on time of initiation, 0.7% increase per week, 100% per 2 years ) 
+
+[3] BIP102:	2MB 
+
+[4] BIP103:	1MB
+
+[x] BIP10X:	1-4 MB dpdt. on miner vote in 1st voting week (takes minimum of top 80% votes)
+
+----
+
+====Final Block Size Limit --> and when is it reached:====
+
+[1] BIP100:	<= 32 MB -->	can slow down/stop/reduce by miner vote
+
+[2] BIP101:	8192 MB -->	2036-01-06		
+
+[3] BIP102:	2 MB -->	2015-11-11
+
+[4] BIP103:	2048 MB -->	2063-07-09
+
+[x] BIP10X:	<= 60.1 GB -->	can slow down/stop/reduce by miner vote or permanently small blocks
+:: (theoretically in 2043 w/o 80% miner support, or 2029 with 80% miner
+:: support, but will never happen if actual blocks are not sufficiently filled)
+
+----
+
+====“Elasticity” of block sizes in case of temporary high TX load:====
+
+[1] BIP100: No (fastest reaction time = x2 increase every 3 months)
+
+[2] BIP101: No (fixed growth rate)
+
+[3] BIP102: No (constant 2 MB)
+
+[4] BIP103: No (fixed growth rate)
+
+[x] BIP10X: Yes, immediate up to 4x block size limit “overbooking” allowed in exceptional cases,
+:: but associated with a counter-incentive to avoid abuse. [Rat‑7]
+
+----
+
+====Miner voting used to initiate the hard fork?====
+
+[1] BIP100: Yes, support with 10800 out of last 12000 blocks (90%)
+
+[2] BIP101: Yes, support with 750 out of last 1000 blocks (75%)
+
+[3] BIP102: No
+
+[4] BIP103: No
+
+[x] BIP10X: Yes, support with 756 out of last 1008 blocks (75%); BIP101 blocks counted by 50%
+
+----
+
+====When does the hard fork happen?====
+
+[1] BIP100:	>=2016-01-11, after 90% miner support
+
+[2] BIP101:	>=2016-01-11, two weeks after 75% miner support
+
+[3] BIP102:	2015-11-11
+
+[4] BIP103:	2017-01-01
+
+[x] BIP10X:	>=today, 2-3 weeks after 75% miner support
