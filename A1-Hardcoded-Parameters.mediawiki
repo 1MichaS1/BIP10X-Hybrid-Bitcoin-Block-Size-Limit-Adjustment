@@ -44,7 +44,7 @@
 
 * 98/128=0.7656250 = Parameter limiting the max long-term decline of BSL to ca. ‑16% p.a. (together with above forgetting factor) in case of >80% miner down-vote
 
-* [39704/32768 ; 150244/32768] <nowiki>[ ~[1.21;4.59] ]</nowiki> = Range relative to the average actual block size of the last voting period (=1008 blocks). The effective BSL vote is forced to lie within this range.
+* <nowiki>[39704/32768 ; 150244/32768] ~[1.21;4.59]</nowiki> = Range relative to the average actual block size of the last voting period (=1008 blocks). The effective BSL vote is forced to lie within this range.
 
 ====Overbooking of blocks:====
 
