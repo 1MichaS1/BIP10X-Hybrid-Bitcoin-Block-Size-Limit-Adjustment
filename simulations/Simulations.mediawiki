@@ -16,7 +16,7 @@ A simulation has been written (source code in appendix) for FreeMat 4.0 and has 
 
 The parameters are chosen by design such that a doubling every 2 years and a halving every 8 years is achieved when each BSL update pushes against the respective limit of (C‑2). This is verified by simulation, as shown below.
 
-The following simulations and diagrams assume without loss of generality, that BIP10X activation (more precisely block M+1008) occurs in the beginning of year 2016.
+The following simulations and diagrams assume without loss of generality, that BIP10X activation (more precisely block ''M''+1008) occurs in the beginning of year 2016.
 
 Note: The algorithm assumes that before start of BIP10X, the BSL was constant and identical to the BSL value set as initial BSL. This is because ''BSL_LongTermAvg'' is initialized with the initial ''BSL_curr'', as specified in ch. 2.2. As a consequence, the “reference start time” of the adjustment is implicitly back-dated to a point in time that lies one year before BIP10X activation. Therefore, the first BSL doubling occurs already 1 year after BIP10X activation, but then every 2 years afterwards. This can be nicely seen in the 3rd figure of simulation (SIM‑01).
 
